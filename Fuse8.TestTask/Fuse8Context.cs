@@ -13,6 +13,11 @@ namespace Fuse8.TestTask
     /// </summary>
     public class Fuse8Context : DbContext
     {
+        public Fuse8Context()
+        {
+            
+        }
+
         public Fuse8Context(DbConnection existingConnection, bool contextOwnsConnection)
             : base(existingConnection, contextOwnsConnection)
         {

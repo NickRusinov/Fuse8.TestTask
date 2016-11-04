@@ -37,7 +37,8 @@ namespace Fuse8.TestTask
         public void Send(Stream report, string from, string to)
         {
             var message = new MailMessage(from, to, messageSubject, messageBody);
-            message.Attachments.Add(new Attachment(report, "Отчет"));
+            report.Position = 0;
+            message.Attachments.Add(new Attachment(report, "Отчет.xlsx"));
 
             mailSender.Send(message);
         }

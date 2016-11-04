@@ -19,13 +19,25 @@ namespace Fuse8.TestTask
         public int Id { get; set; }
 
         /// <summary>
+        /// Идентификатор связанного заказа
+        /// </summary>
+        public int OrderId { get; set; }
+
+        /// <summary>
+        /// Идентификатор связанного товара
+        /// </summary>
+        public int ProductId { get; set; }
+
+        /// <summary>
         /// Связанный заказ
         /// </summary>
+        [ForeignKey("OrderId")]
         public Order Order { get; set; }
 
         /// <summary>
         /// Связанный товар
         /// </summary>
+        [ForeignKey("ProductId")]
         public Product Product { get; set; }
 
         /// <summary>
@@ -36,6 +48,6 @@ namespace Fuse8.TestTask
         /// <summary>
         /// Количество товара
         /// </summary>
-        public int Quantity { get; set; }
+        public short Quantity { get; set; }
     }
 }

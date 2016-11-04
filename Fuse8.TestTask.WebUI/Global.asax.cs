@@ -13,6 +13,7 @@ namespace Fuse8.TestTask.WebUI
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            ControllerFactory.RegisterController(ControllerBuilder.Current);
         }
     }
 }

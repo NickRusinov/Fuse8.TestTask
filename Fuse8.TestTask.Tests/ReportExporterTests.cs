@@ -32,13 +32,13 @@ namespace Fuse8.TestTask.Tests
             AssertRow(package.Workbook.Worksheets[1], 6, 3, new DateTime(2012, 3, 4), 3, "ProductC", 5, 30.00m);
         }
 
-        private static void AssertRow(ExcelWorksheet worksheet, int row, int orderId, DateTime orderDate, int productId, string productName, int quantity, decimal unitPrice)
+        private static void AssertRow(ExcelWorksheet worksheet, int row, int orderId, DateTime orderDate, int productId, string productName, short quantity, decimal unitPrice)
         {
             Assert.Equal(orderId, worksheet.GetValue<int>(row, 1));
             Assert.Equal(orderDate, worksheet.GetValue<DateTime>(row, 2));
             Assert.Equal(productId, worksheet.GetValue<int>(row, 3));
             Assert.Equal(productName, worksheet.GetValue<string>(row, 4));
-            Assert.Equal(quantity, worksheet.GetValue<int>(row, 5));
+            Assert.Equal(quantity, worksheet.GetValue<short>(row, 5));
             Assert.Equal(unitPrice, worksheet.GetValue<decimal>(row, 6));
         }
     }
