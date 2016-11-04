@@ -54,14 +54,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fuse8Context.cs" />
+    <Compile Include="IMailSender.cs" />
     <Compile Include="IOrderRepository.cs" />
     <Compile Include="IReportExporter.cs" />
+    <Compile Include="IReportSender.cs" />
+    <Compile Include="MailSender.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderDetail.cs" />
     <Compile Include="OrderRepository.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportExporter.cs" />
+    <Compile Include="ReportSender.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
