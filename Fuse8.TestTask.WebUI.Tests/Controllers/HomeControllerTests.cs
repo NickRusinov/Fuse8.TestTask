@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Fuse8.TestTask.WebUI.Controllers;
+using Fuse8.TestTask.WebUI.Models.Home;
 using Moq;
 using Xunit;
 
@@ -18,7 +19,7 @@ namespace Fuse8.TestTask.WebUI.Tests.Controllers
             var orderRepository = MockOfOrderRepository();
             var sut = new HomeController(orderRepository, MockOfReportExporter(), MockOfReportSender());
 
-            sut.Index(new DateTime(2010, 1, 1), new DateTime(2020, 1, 1), "from@email.com", "to@email.com");
+            sut.Index(CreateIndexViewModel(new DateTime(2010, 1, 1), new DateTime(2020, 1, 1), "from@email.com", "to@email.com"));
 
             Mock.Get(orderRepository).Verify(or => or.WithMinDate(new DateTime(2010, 1, 1)));
             Mock.Get(orderRepository).Verify(or => or.WithMaxDate(new DateTime(2020, 1, 1)));
@@ -30,7 +31,7 @@ namespace Fuse8.TestTask.WebUI.Tests.Controllers
             var reportExporter = MockOfReportExporter();
             var sut = new HomeController(MockOfOrderRepository(), reportExporter, MockOfReportSender());
 
-            sut.Index(new DateTime(2010, 1, 1), new DateTime(2020, 1, 1), "from@email.com", "to@email.com");
+            sut.Index(CreateIndexViewModel(new DateTime(2010, 1, 1), new DateTime(2020, 1, 1), "from@email.com", "to@email.com"));
 
             Mock.Get(reportExporter).Verify(re => re.Export(It.IsAny<IReadOnlyCollection<Order>>()));
         }
@@ -41,7 +42,7 @@ namespace Fuse8.TestTask.WebUI.Tests.Controllers
             var reportSender = MockOfReportSender();
             var sut = new HomeController(MockOfOrderRepository(), MockOfReportExporter(), reportSender);
 
-            sut.Index(new DateTime(2010, 1, 1), new DateTime(2020, 1, 1), "from@email.com", "to@email.com");
+            sut.Index(CreateIndexViewModel(new DateTime(2010, 1, 1), new DateTime(2020, 1, 1), "from@email.com", "to@email.com"));
 
             Mock.Get(reportSender).Verify(rs => rs.Send(It.IsAny<Stream>(), "from@email.com", "to@email.com"));
         }
@@ -62,6 +63,11 @@ namespace Fuse8.TestTask.WebUI.Tests.Controllers
         private static IReportSender MockOfReportSender()
         {
             return Mock.Of<IReportSender>();
+        }
+
+        private static IndexViewModel CreateIndexViewModel(DateTime minDate, DateTime maxDate, string from, string to)
+        {
+            return new IndexViewModel { MinDate = minDate, MaxDate = maxDate, From = from, To = to };
         }
     }
 }

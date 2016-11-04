@@ -97,10 +97,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\NorthwindNET.mdf" />
-    <Content Include="App_Data\NorthwindNET_log.ldf">
-      <DependentUpon>NorthwindNET.mdf</DependentUpon>
-    </Content>
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -128,7 +124,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fuse8.TestTask\Fuse8.TestTask.csproj">
       <Project>{b5477954-149d-4f90-948a-c9a8f0ff1b50}</Project>
